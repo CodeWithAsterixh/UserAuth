@@ -1,0 +1,557 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --white: rgb(255, 255, 255);
+  --gradientBlue1: #007aff;
+  --gradientBlue2: #0f70da;
+  --gradientBlue1-hover: rgba(0, 123, 255, 0.9);
+  --gradientBlue2-hover: rgba(15, 113, 218, 0.9);
+  --text-color-gray: #2d3748;
+  --text-color-gray-hover: rgba(45, 55, 72, 0.9);
+  --text-color-black: rgb(29, 29, 29);
+  --text-color-gray2: #d1d1d1;
+  --text-color-gray3: #a1a1a1;
+  --error: #f86b6b;
+  --fontsize-base: clamp(15px, 1rem, 1dvw);
+  --fontsize-smaller: clamp(12px, 0.8rem, 0.8dvw);
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  background-color: var(--white);
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color-black);
+}
+* {
+  box-sizing: border-box;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+button.icon,
+input {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  transition-duration: 500ms;
+}
+button.icon {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+button:active {
+  scale: 0.95;
+}
+.btn-primary {
+  background-color: var(--gradientBlue1);
+}
+.btn-secondary {
+  background-color: var(--text-color-gray);
+}
+.btn-primary:hover {
+  background-color: var(--gradientBlue1-hover);
+}
+.btn-secondary:hover {
+  background-color: var(--text-color-gray-hover);
+}
+
+.checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--text-color-gray2);
+  display: flex;
+  border-radius: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition-duration: 300ms;
+}
+.checkbox svg {
+  opacity: 0;
+  width: 100%;
+}
+.checkbox.checked {
+  background-color: var(--gradientBlue1);
+  border-color: var(--gradientBlue1);
+}
+
+.checkbox.checked svg {
+  opacity: 1;
+  transition-duration: 300ms;
+}
+
+.root {
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: flex-start;
+  justify-self: flex-start;
+}
+
+/* image carousel for large screen */
+
+.img_lg_carousel {
+  width: 40%;
+  min-width: 300px;
+  min-height: 100vh;
+  flex-shrink: 0;
+  background: linear-gradient(
+    324.93deg,
+    var(--gradientBlue1) 0.74%,
+    var(--gradientBlue2) 100%
+  );
+  position: relative;
+  isolation: isolate;
+
+  transition-duration: 500ms;
+}
+
+/* remove carousel for smaller screen */
+@media screen and (max-width: 640px) {
+  .img_lg_carousel {
+    display: none;
+  }
+}
+.img_lg_carousel > * {
+  position: absolute;
+}
+
+.img_lg_carousel .eclipse {
+  display: block;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -10;
+  width: 100%;
+  scale: 0.95;
+  aspect-ratio: 1/1;
+  border-radius: 999px;
+  background: linear-gradient(
+    324.93deg,
+    var(--gradientBlue2) 0.74%,
+    var(--gradientBlue1) 100%
+  );
+}
+.img_lg_carousel .carousel_controller {
+  width: 90%;
+  height: fit-content;
+  padding: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.img_lg_carousel .carousel_controller li {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-width: 0.15px;
+  border-style: solid;
+  border-color: var(--white);
+  position: relative;
+  border-radius: 50%;
+  scale: 1.4;
+  cursor: pointer;
+}
+.img_lg_carousel .carousel_controller li > span {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+  scale: 1.2;
+}
+.img_lg_carousel .carousel_controller li .semi-circle {
+  display: none;
+}
+.img_lg_carousel .carousel_controller li.pres {
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  
+}
+.img_lg_carousel .carousel_controller li.pres .semi-circle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  scale: 1.5;
+  position: relative;
+
+  right: -0.2rem;
+}
+/* carousel content */
+.img_lg_carousel .carousel_content {
+  width: 100%;
+  aspect-ratio: 1/1;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+.img_lg_carousel .carousel_content li {
+  width: 45%;
+  height: fit-content;
+  scale: 0.8;
+  top: 2rem;
+}
+.img_lg_carousel .carousel_content li img {
+  width: 100%;
+}
+.img_lg_carousel .carousel_content li.pres {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  scale: 1;
+  z-index: 1;
+}
+
+.registration_container {
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+
+}
+.registration_container > div {
+  width: 100%;
+  max-width: 640px;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 5rem 2rem 5rem 2rem;
+
+}
+.registration_container > div > header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.registration_container > div > header > span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+}
+.registration_container > div > header > span > img {
+  width: 2.5rem;
+}
+
+.registration_container > div > .headline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.registration_container > div > .headline > p {
+  color: var(--text-color-gray);
+  font-size: var(--fontsize-base);
+}
+
+/* form content */
+
+.registration_container > div > form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.registration_container > div > form .mainFormInputs {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 0.25rem;
+  column-gap: 2rem;
+}
+
+.registration_container > div > form .mainFormInputs .outline_input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.registration_container > div > form .mainFormInputs .outline_input b {
+  color: var(--text-color-gray);
+  font-weight: normal;
+  font-size: var(--fontsize-base);
+}
+.registration_container > div > form .mainFormInputs .outline_input b .helper {
+  font-size: var(--fontsize-smaller);
+}
+.registration_container > div > form .mainFormInputs .outline_input .info {
+  font-size: var(--fontsize-smaller);
+  color: var(--text-color-gray3);
+  min-height: 3ch;
+}
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .info.error {
+  color: var(--error);
+}
+.registration_container > div > form .mainFormInputs .outline_input .input {
+  outline: none;
+  border: 2px solid var(--text-color-gray2);
+  font-size: var(--fontsize-base);
+  border-radius: 5px;
+  transition-duration: 500ms;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  cursor: text;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input
+  input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0.75rem;
+  padding-right: clamp(22px, 1rem, 1dvw);
+  font-size: var(--fontsize-base);
+}
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input
+  input:only-child {
+  padding: 0.75rem;
+}
+
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input
+  input#dateInput {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input
+  .icon {
+  cursor: pointer;
+  width: clamp(25px, 1rem, 1dvw);
+  height: 100%;
+  position: absolute;
+  padding-right: 4px;
+  right: 0;
+  top: 0;
+}
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input
+  .icon
+  svg {
+  width: 100%;
+}
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input
+  .icon
+  svg
+  path {
+  fill: var(--text-color-gray2);
+}
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input.focus
+  .icon
+  svg
+  path {
+  fill: var(--gradientBlue1);
+}
+.registration_container
+  > div
+  > form
+  .mainFormInputs
+  .outline_input
+  .input.focus {
+  border-color: var(--gradientBlue1);
+}
+
+/* check boxes */
+.registration_container > div > form .check_requirements {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.registration_container > div > form .check_requirements .check_box_container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.registration_container
+  > div
+  > form
+  .check_requirements
+  .check_box_container
+  b {
+  font-size: var(--fontsize-base);
+  font-weight: normal;
+}
+.registration_container
+  > div
+  > form
+  .check_requirements
+  .check_box_container
+  b
+  a {
+  color: var(--gradientBlue1);
+  text-decoration: none;
+}
+
+/* action buttons */
+.registration_container > div > form .actionsButtons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
+  column-gap: 2rem;
+  margin-top: 2rem;
+}
+.registration_container > div > form .actionsButtons button {
+  padding: 0.75rem;
+  border: none;
+  color: var(--white);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: var(--fontsize-base);
+}
+
+.registration_container > div > .downloadButtons {
+  width: 100%;
+  display: flex;
+  row-gap: 2rem;
+  column-gap: 0.5rem;
+  margin-top: 2rem;
+}
+.registration_container > div > .downloadButtons > * {
+  background-color: var(--text-color-black);
+  padding: 0.25rem 0.5rem;
+  border: none;
+  color: var(--white);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: var(--fontsize-base);
+  width: fit-content;
+}
+.registration_container > div > .downloadButtons > * .img {
+  height: 2rem;
+}
+.registration_container > div > .downloadButtons > * .img > img {
+  height: 100%;
+}
+.registration_container > div > .downloadButtons > * .text-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.registration_container > div > .downloadButtons > * .text-content b {
+  font-size: var(--fontsize-smaller);
+}
+.registration_container > div > .downloadButtons > * .text-content strong {
+  font-size: var(--fontsize-base);
+}
+
+@media screen and (min-width: 778px) {
+  .registration_container > div > form .mainFormInputs,
+  .registration_container > div > form .actionsButtons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 640px) {
+  .registration_container > div > form .mainFormInputs,
+  .registration_container > div > form .actionsButtons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 498px) {
+  .registration_container > div > form .mainFormInputs,
+  .registration_container > div > form .actionsButtons {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .registration_container > div > .downloadButtons > * {
+    width: 100%;
+  }
+
+
+}
