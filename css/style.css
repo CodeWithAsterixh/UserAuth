@@ -282,14 +282,14 @@ button:active {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 1rem;
 }
 .registration_container > div > form .mainFormInputs {
   width: 100%;
   height: fit-content;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 0.25rem;
+  row-gap: 1rem;
   column-gap: 2rem;
 }
 

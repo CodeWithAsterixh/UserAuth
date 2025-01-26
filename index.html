@@ -101,7 +101,7 @@
 
           <!-- form -->
 
-          <form>
+          <form id="register_form">
             <div class="mainFormInputs">
               <!-- first name -->
               <label for="firstname" class="outline_input">
@@ -213,6 +213,7 @@
             <div class="check_requirements">
               <label for="remember_me" class="check_box_container">
                 <span id="remember_me" class="checkbox">
+                  <input type="hidden" name="remember_me" id="remember_me" value="false">
                   <svg
                     width="12"
                     height="9"
@@ -232,6 +233,7 @@
               </label>
               <label for="tpp" class="check_box_container">
                 <span id="tpp" class="checkbox">
+                  <input type="hidden" name="tpp" id="tpp" value="false">
                   <svg
                     width="12"
                     height="9"
@@ -254,7 +256,7 @@
               </label>
             </div>
             <div class="actionsButtons">
-              <button type="button" class="btn-primary">Create account</button>
+              <button type="submit" class="btn-primary">Create account</button>
               <button type="button" class="btn-secondary">
                 <img src="/assets/iconfinder_Google.svg" alt="google_icon" /><b
                   >Sign-in with google</b
