@@ -10,7 +10,7 @@ export function validateMinLength(input, minLength) {
     const lengthRegex = new RegExp(`^.{${minLength},}$`);
     return({
         isValid:lengthRegex.test(input),
-        message:`Must be at least ${minLength} characters long.`
+        message:minLength===1?"required":`Must be at least ${minLength} characters long.`
     })
 }
 export function validateEmail(email) {

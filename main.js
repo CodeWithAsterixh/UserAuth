@@ -1,4 +1,5 @@
 import {
+  runCarousel,
   runValidatorOnElement,
   toggleCheckBox,
   toggleClassInItem,
@@ -8,6 +9,7 @@ import {
 document.addEventListener("DOMContentLoaded", () => {
   toggleClassInItem("input", "focus");
   toggleDateViewer();
+  runCarousel()
   runValidatorOnElement("maininput");
   // runValidatorOnElement("maininput", "submit")
   toggleCheckBox();
@@ -17,19 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     runValidatorOnElement("maininput", "submit")
-    // const formData = new FormData(form);
+    
+    const formData = new FormData(form);
     // convert form data to an object
-    // const {
-    //   firstname,
-    //   lastname,
-    //   email_phone,
-    //   dob,
-    //   password,
-    //   confirmPassword,
-    //   remember_me,
-    //   tpp,
-    // } = Object.fromEntries(formData.entries());
-
+    const data = Object.fromEntries(formData.entries());
+    const hasEmptyInput = Object.values(data).some(val => val == "") // look for empty inputs
+    const tppFalse = data.tpp==="false" // look for non checked tpp
+    
+    if(!tppFalse&&!hasEmptyInput){
+      alert(`Welcome ${data.firstname} ${data.lastname}\n\nAccount created successfully\n\n\n\nClick 'OK' to continue`)
+    }
     
     
   });

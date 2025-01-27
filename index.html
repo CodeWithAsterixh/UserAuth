@@ -18,69 +18,18 @@
         <span class="eclipse"></span>
         <!-- carousel content -->
         <ul class="carousel_content">
-          <li>
+          <li data-index="0" class="pres">
             <img src="./assets/img_2.png" alt="phone" />
           </li>
-          <li class="pres">
+          <li data-index="1">
             <img src="./assets/img_2.png" alt="phone" />
           </li>
-          <li>
+          <li data-index="2">
             <img src="./assets/img_2.png" alt="phone" />
           </li>
         </ul>
         <!-- carousel controller -->
         <ul class="carousel_controller">
-          <li>
-            <span>
-              <svg
-                width="11"
-                height="22"
-                class="semi-circle"
-                viewBox="0 0 11 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 21C5.52285 21 10 16.5228 10 11C10 5.47715 5.52285 1 0 1"
-                  stroke="white"
-                />
-              </svg>
-            </span>
-          </li>
-          <li class="pres">
-            <span>
-              <svg
-                width="11"
-                height="22"
-                class="semi-circle"
-                viewBox="0 0 11 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 21C5.52285 21 10 16.5228 10 11C10 5.47715 5.52285 1 0 1"
-                  stroke="white"
-                />
-              </svg>
-            </span>
-          </li>
-          <li>
-            <span>
-              <svg
-                width="11"
-                height="22"
-                class="semi-circle"
-                viewBox="0 0 11 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 21C5.52285 21 10 16.5228 10 11C10 5.47715 5.52285 1 0 1"
-                  stroke="white"
-                />
-              </svg>
-            </span>
-          </li>
         </ul>
       </div>
 
@@ -213,7 +162,14 @@
             <div class="check_requirements">
               <label for="remember_me" class="check_box_container">
                 <span id="remember_me" class="checkbox">
-                  <input type="hidden" name="remember_me" id="remember_me" value="false">
+                  <input
+                    class="maininput"
+                    type="hidden"
+                    name="remember_me"
+                    data-type="remember_me"
+                    id="remember_me"
+                    value="false"
+                  />
                   <svg
                     width="12"
                     height="9"
@@ -232,8 +188,15 @@
                 <b>Remember me</b>
               </label>
               <label for="tpp" class="check_box_container">
-                <span id="tpp" class="checkbox">
-                  <input type="hidden" name="tpp" id="tpp" value="false">
+                <span id="tpp" class="checkbox effect">
+                  <input
+                    class="maininput"
+                    type="hidden"
+                    name="tpp"
+                    data-type="tpp"
+                    id="tpp"
+                    value="false"
+                  />
                   <svg
                     width="12"
                     height="9"
@@ -268,14 +231,18 @@
           <!-- download -->
           <div class="downloadButtons">
             <button type="button">
-                <span class="img"><img src="/assets/icons8-google-play.svg" alt=""></span>
+              <span class="img"
+                ><img src="/assets/icons8-google-play.svg" alt=""
+              /></span>
               <span class="text-content">
                 <b>Get it on</b>
                 <strong>Google Play</strong>
               </span>
             </button>
-            <button type="button" >
-                <span class="img"><img src="/assets/icons8-apple.svg" alt=""></span>
+            <button type="button">
+              <span class="img"
+                ><img src="/assets/icons8-apple.svg" alt=""
+              /></span>
               <span class="text-content">
                 <b>Download on the</b>
                 <strong>Apple Store</strong>

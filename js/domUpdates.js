@@ -84,25 +84,38 @@ const validationMethods = {
       message: isValid.isValid ? "" : errorMessages.password,
     };
   },
-  confirmPassword: (value, element) => {
+  confirmPassword: (value) => {
     const originalPassword = document.querySelector("input[id=password]").value;
+    const isNotEmpty = validateMinLength(value, 1);
+    const isValid = value === originalPassword;
+    const message = !isNotEmpty.isValid
+      ? isNotEmpty.message
+      : !isValid
+      ? errorMessages.confirmPassword
+      : "";
     return {
-      isValid: value === originalPassword,
-      message: value === originalPassword ? "" : errorMessages.confirmPassword,
+      isValid: isValid && isNotEmpty.isValid,
+      message,
+    };
+  },
+  tpp: (value) => {
+    return {
+      isValid: value === "true",
+      message: "",
     };
   },
 };
 
 export function runValidatorOnElement(classNameFind, type = "watch") {
   const elements = document.querySelectorAll(`.${classNameFind}`);
+  let foundInvalid = false; // to check if any element is found invalid
 
-  elements.forEach((element) => {
+  elements.forEach((element, ind, arr) => {
     const parent = document.querySelector(
       `label[for=${element.getAttribute("id")}]`
     );
     const output = parent?.querySelector(".info");
-    if (!output) return; //return if the output element is not available
-
+    const errorBorder = parent?.querySelector(".effect");
     // use debounce for the event change processes
     const debouncedInputHandler = debounce((e) => {
       const type = e.target.getAttribute("data-type");
@@ -115,16 +128,97 @@ export function runValidatorOnElement(classNameFind, type = "watch") {
         const message = validationResult.message || "";
 
         setAriaInvalid(element, isValid);
-        isValid ? clearError(output) : setError(output, message);
+
+        // focus on the first invalid element found
+        if (!isValid && !foundInvalid) {
+          foundInvalid = !isValid;
+          element.focus();
+        }
+
+        //run output if available
+        if (output) {
+          isValid ? clearError(output) : setError(output, message);
+        }
+        if (errorBorder) {
+          const hasErrorClass = errorBorder.classList.contains("error");
+          if (isValid) {
+            if (hasErrorClass) {
+              errorBorder.classList.remove("error");
+            }
+          } else {
+            if (hasErrorClass) {
+              errorBorder.classList.remove("error");
+              errorBorder.classList.add("error");
+            } else {
+              errorBorder.classList.add("error");
+            }
+          }
+        }
       }
     }, 500);
 
-    if (type === "watch") {
-      element.addEventListener("input", debouncedInputHandler);
-    } else if (type === "submit") {
-      debouncedInputHandler({
-        target: element,
-      });
-    }
+    // run validator handler
+    type === "watch"
+      ? element.addEventListener("input", debouncedInputHandler)
+      : debouncedInputHandler({
+          target: element,
+        });
   });
+}
+
+export function runCarousel() {
+  const carouselItems = document.querySelector("ul.carousel_content");
+  const carouselControlsContainer = document.querySelector(
+    "ul.carousel_controller"
+  );
+  let currentIndex = 0;
+
+  function handleItemChange(e) {
+    const index = e.getAttribute("data-index");
+    console.log(index);
+    if (currentIndex !== index) {
+      carouselItems.childNodes.forEach((carouselItem) => {
+        if (carouselItem.nodeType === Node.ELEMENT_NODE) {
+          const childIndex = carouselItem.getAttribute("data-index")
+          if(childIndex===index){
+            carouselItem.classList.add("pres")
+          }else{
+            carouselItem.classList.remove("pres")
+          }
+        }
+      });
+      carouselControlsContainer.querySelectorAll("li").forEach((li)=>li.classList.remove("pres"))
+      e.classList.add("pres")
+      currentIndex = index;
+    }
+  }
+  Array.from({ length: carouselItems.children.length }).forEach((_, ind) => {
+    const li = document.createElement("li");
+    li.setAttribute("data-index", ind);
+    li.innerHTML = `
+    <span>
+              <svg
+                width="11"
+                height="22"
+                class="semi-circle"
+                viewBox="0 0 11 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 21C5.52285 21 10 16.5228 10 11C10 5.47715 5.52285 1 0 1"
+                  stroke="white"
+                />
+              </svg>
+            </span>
+        `;
+    li.addEventListener("click", (e) => {
+      
+      handleItemChange(li);
+    });
+    ind===currentIndex&&li.classList.add("pres")
+    carouselControlsContainer.appendChild(li);
+  });
+
+  console.log();
 }

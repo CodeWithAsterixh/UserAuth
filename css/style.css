@@ -52,6 +52,7 @@ input {
 
 button {
   transition-duration: 500ms;
+  cursor: pointer;
 }
 button.icon {
   border: none;
@@ -91,12 +92,15 @@ button:active {
 }
 .checkbox.checked {
   background-color: var(--gradientBlue1);
-  border-color: var(--gradientBlue1);
+  border-color: var(--gradientBlue1) !important;
 }
 
 .checkbox.checked svg {
   opacity: 1;
   transition-duration: 300ms;
+}
+.checkbox.effect.error {
+  border-color: var(--error);
 }
 
 .root {
@@ -173,6 +177,7 @@ button:active {
   border-radius: 50%;
   scale: 1.4;
   cursor: pointer;
+  transition-duration: .5s;
 }
 .img_lg_carousel .carousel_controller li > span {
   width: 100%;
@@ -217,6 +222,8 @@ button:active {
   height: fit-content;
   scale: 0.8;
   top: 2rem;
+  transition-duration: 1s;
+
 }
 .img_lg_carousel .carousel_content li img {
   width: 100%;
@@ -289,14 +296,14 @@ button:active {
   height: fit-content;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 1rem;
+  row-gap: 0.5rem;
   column-gap: 2rem;
 }
 
 .registration_container > div > form .mainFormInputs .outline_input {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.125rem;
 }
 
 .registration_container > div > form .mainFormInputs .outline_input b {
@@ -310,7 +317,7 @@ button:active {
 .registration_container > div > form .mainFormInputs .outline_input .info {
   font-size: var(--fontsize-smaller);
   color: var(--text-color-gray3);
-  min-height: 3ch;
+  min-height: 2.5ch;
 }
 .registration_container
   > div
@@ -472,7 +479,7 @@ button:active {
   grid-template-columns: 1fr;
   row-gap: 1rem;
   column-gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .registration_container > div > form .actionsButtons button {
   padding: 0.75rem;
