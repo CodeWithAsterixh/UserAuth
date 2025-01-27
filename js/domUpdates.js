@@ -136,7 +136,7 @@ export function runValidatorOnElement(classNameFind, type = "watch") {
         }
 
         //run output if available
-        if (output) {
+        if (output && output.textContent =="") {
           isValid ? clearError(output) : setError(output, message);
         }
         if (errorBorder) {
